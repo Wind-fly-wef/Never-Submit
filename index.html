@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Submit Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #89f7fe, #7956f8); /* Gradient Background */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        nav {
+            background: linear-gradient(135deg, #89f7fe, #7956f8);
+            color: white;
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        header {
+            margin-top: 80px; /* To account for the fixed nav bar */
+            text-align: center;
+        }
+
+        header h1 {
+            color: #ffffff;
+            font-size: 36px;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.651);
+        }
+
+        .form-container {
+            background-color: #00000081;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0px 20px rgb(255, 0, 0);
+            text-align: center;
+            width: 300px;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .submit-btn {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #89f7fe, #7956f8);
+            color: #000000;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        footer p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .date-time {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>Made By Hussain</h1>
+    </nav>
+
+    <header>
+        <h1>Submit To Earn $999</h1>
+    </header>
+
+    <div class="form-container">
+        <form id="interactiveForm">
+            <input type="text" id="nameInput" placeholder="Enter your name" required><br>
+            <input type="email" id="emailInput" placeholder="Enter your email" required><br>
+            <button class="submit-btn" type="button" id="submitBtn">Submit</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>© 2025 Your Website</p>
+        <p class="date-time" id="dateTime"></p>
+    </footer>
+
+    <script>
+        const button = document.getElementById('submitBtn');
+        const form = document.getElementById('interactiveForm');
+        const emailInput = document.getElementById('emailInput');
+        const nameInput = document.getElementById('nameInput');
+        let direction = 'right'; // Initial direction
+        let moveCount = 0; // Count mouse interactions
+        let buttonFrozen = false; // Check if button is frozen
+
+        button.addEventListener('mouseenter', () => {
+            if (buttonFrozen) return; // Stop movement if button is frozen
+
+            moveCount++;
+
+            if (direction === 'right') {
+                button.style.transform = 'translateX(100px)'; // Move 4 inches right (approx)
+                direction = 'left';
+            } else {
+                button.style.transform = 'translateX(-100px)'; // Move 4 inches left (approx)
+                direction = 'right';
+            }
+
+            // Show prompt after 11 movements
+   
+        });
+
+        form.addEventListener('input', () => {
+            const emailValue = emailInput.value.toLowerCase();
+            const nameValue = nameInput.value.toLowerCase();
+
+           
+        });
+
+        const dateTimeElement = document.getElementById('dateTime');
+
+        // Function to update current date and time
+        function updateDateTime() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZone: 'Asia/Karachi' };
+            dateTimeElement.textContent = now.toLocaleDateString('en-US', options);
+        }
+
+        // Update date and time every second
+        setInterval(updateDateTime, 1000);
+    </script>
+</body>
+</html>
